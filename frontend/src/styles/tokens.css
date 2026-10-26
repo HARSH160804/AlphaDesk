@@ -1,0 +1,76 @@
+/* AlphaDesk design tokens. Colors are stored as space-separated RGB triplets
+   so Tailwind can apply `/<alpha-value>` to them.
+   One accent (teal) + muted semantic pos/neg. No gradients, no glow. */
+
+:root,
+:root[data-theme="light"] {
+  /* Surfaces — layered neutrals (near-white → off-white) */
+  --surface:          255 255 255;   /* page */
+  --surface-raised:   248 250 252;   /* cards, panels */
+  --surface-sunken:   241 245 249;   /* table header, input bg */
+
+  /* Foreground */
+  --fg:               15 23 42;      /* slate-900 */
+  --fg-muted:         71 85 105;     /* slate-600 */
+  --fg-subtle:        148 163 184;   /* slate-400 */
+
+  /* Hairlines — 1px borders instead of shadows */
+  --hairline:         226 232 240;   /* slate-200 */
+  --hairline-strong:  203 213 225;   /* slate-300 */
+
+  /* Accent — single restrained teal */
+  --accent:           15 118 110;    /* teal-700 */
+  --accent-fg:        255 255 255;
+  --accent-muted:     204 224 221;
+
+  /* Semantic — muted, not neon */
+  --pos:              21 128 61;     /* green-700 */
+  --pos-bg:           220 237 227;
+  --neg:              153 27 27;     /* red-800 */
+  --neg-bg:           246 220 220;
+  --warn:             161 98 7;      /* amber-700 */
+
+  /* Chart defaults (consumed by the LineChart wrapper) */
+  --chart-fund:       15 118 110;    /* same teal as --accent */
+  --chart-bench:      100 116 139;   /* slate-500, dashed */
+  --chart-grid:       226 232 240;
+  --chart-crosshair:  148 163 184;
+}
+
+:root[data-theme="dark"] {
+  --surface:          2 6 23;        /* slate-950 */
+  --surface-raised:   15 23 42;      /* slate-900 */
+  --surface-sunken:   30 41 59;      /* slate-800 */
+
+  --fg:               241 245 249;   /* slate-100 */
+  --fg-muted:         148 163 184;   /* slate-400 */
+  --fg-subtle:        100 116 139;   /* slate-500 */
+
+  --hairline:         30 41 59;      /* slate-800 */
+  --hairline-strong:  51 65 85;      /* slate-700 */
+
+  --accent:           45 212 191;    /* teal-400 */
+  --accent-fg:        2 6 23;
+  --accent-muted:     19 78 74;      /* teal-900-ish */
+
+  --pos:              74 222 128;    /* green-400 */
+  --pos-bg:           20 83 45;      /* green-900 at low alpha, but used as full color */
+  --neg:              248 113 113;   /* red-400 */
+  --neg-bg:           127 29 29;
+  --warn:             250 204 21;
+
+  --chart-fund:       45 212 191;
+  --chart-bench:      148 163 184;
+  --chart-grid:       30 41 59;
+  --chart-crosshair:  100 116 139;
+}
+
+/* System preference fallback — only applies when the html element has no
+   explicit data-theme set (we always set one in index.html, so this is a
+   safety net). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
+    --surface: 2 6 23;
+    --fg: 241 245 249;
+  }
+}
