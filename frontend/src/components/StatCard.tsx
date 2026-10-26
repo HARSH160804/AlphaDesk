@@ -7,7 +7,7 @@ interface StatCardProps {
   value: ReactNode;
   delta?: number | null;
   secondary?: ReactNode;
-  hint?: string;
+  hint?: ReactNode;
   className?: string;
 }
 

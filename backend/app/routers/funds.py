@@ -123,6 +123,35 @@ def list_funds_endpoint(
 def get_fund_detail(scheme_code: int) -> FundDetail:
     with SessionLocal() as session:
         bundle = get_bundle(session, scheme_code)
-    if bundle is None:
-        raise HTTPException(status_code=404, detail=f"fund {scheme_code} not found")
-    return detail_from_bundle(bundle)
+        if bundle is None:
+            raise HTTPException(status_code=404, detail=f"fund {scheme_code} not found")
+        peer_rank = _peer_pct_rank_3y(session, bundle.fund.category, scheme_code)
+    detail = detail_from_bundle(bundle)
+    if peer_rank is not None:
+        return detail.model_copy(update={"pct_rank_3y": peer_rank})
+    return detail
+
+
+def _peer_pct_rank_3y(session, category: str, scheme_code: int) -> float | None:
+    """Compute the fund's 3Y CAGR percentile within its category."""
+    import math
+    peers = [
+        get_bundle(session, f.scheme_code)
+        for f in list_funds(session)
+        if f.category == category
+    ]
+    values = []
+    for b in peers:
+        if b is None:
+            continue
+        v = b.scorecard.trailing["3Y"].value
+        if isinstance(v, float) and not math.isnan(v):
+            values.append((b.fund.scheme_code, v))
+    if len(values) < 2:
+        return None
+    values.sort(key=lambda t: t[1])  # ascending
+    for i, (code, _) in enumerate(values):
+        if code == scheme_code:
+            # pct rank: higher value → higher percentile
+            return (i + 1) / len(values) * 100.0
+    return None
