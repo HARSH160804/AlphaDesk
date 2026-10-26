@@ -9,6 +9,7 @@ from sqlalchemy import func, select
 from app.db import SessionLocal
 from app.logging_setup import configure_logging
 from app.models import Fund, IngestionRun, NavHistory
+from app.sql_endpoint import router as sql_router
 
 configure_logging()
 
@@ -17,6 +18,8 @@ app = FastAPI(
     version="0.1.0",
     description="Mutual fund performance analytics and automated reporting.",
 )
+
+app.include_router(sql_router)
 
 
 @app.get("/healthz", tags=["meta"])
