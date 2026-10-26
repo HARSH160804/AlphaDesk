@@ -10,6 +10,7 @@ import FundDetailPage from "@/pages/FundDetail";
 import FundsPage from "@/pages/Funds";
 import OverviewPage from "@/pages/Overview";
 import { PlaceholderPage } from "@/pages/Placeholder";
+import ReportsPage from "@/pages/Reports";
 
 export default function App(): JSX.Element {
   return (
@@ -26,7 +27,7 @@ export default function App(): JSX.Element {
                   <Route path="/funds" element={<FundsPage />} />
                   <Route path="/funds/:code" element={<FundDetailPage />} />
                   <Route path="/compare" element={<ComparePage />} />
-                  <Route path="/reports" element={<PlaceholderPage title="Reports" phase="Phase 7" />} />
+                  <Route path="/reports" element={<ReportsPage />} />
                   <Route path="/data-health" element={<DataHealthPage />} />
                   <Route path="/design" element={<DesignPage />} />
                   <Route path="*" element={<PlaceholderPage title="Not found" phase="—" />} />

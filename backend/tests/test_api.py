@@ -188,19 +188,11 @@ def test_ingest_status(client: TestClient) -> None:
     assert body["funds_processed"] >= 0
 
 
-# ---------- /api/reports (stub) ----------
-
-
-def test_reports_stub_returns_501(client: TestClient) -> None:
-    r = client.post(
-        "/api/reports",
-        json={"codes": [122639], "format": "pptx", "period": "3Y"},
-    )
-    assert r.status_code == 501
+# ---------- /api/reports ----------
 
 
 def test_reports_body_validation(client: TestClient) -> None:
-    # format must be in enum
+    # format must be in enum (full generation behaviour lives in test_reports.py)
     r = client.post(
         "/api/reports",
         json={"codes": [122639], "format": "xlsx", "period": "3Y"},

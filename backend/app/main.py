@@ -47,6 +47,7 @@ app.add_middleware(
     ],
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
+    expose_headers=["Content-Disposition", "X-Report-Filename"],
     allow_credentials=False,
 )
 
