@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Env / secrets
+.env
+.env.local
+*.pem
+
+# Data / SQLite
+*.sqlite
+*.sqlite3
+*.db
+/data/
+
+# Node / frontend
+node_modules/
+dist/
+.vite/
+.turbo/
+
+# Reports (generated)
+backend/reports/_out/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Notebooks
+.ipynb_checkpoints/

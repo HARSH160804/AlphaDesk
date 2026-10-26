@@ -1,0 +1,1 @@
+"""AlphaDesk backend application package."""

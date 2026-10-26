@@ -1,0 +1,64 @@
+# AlphaDesk fund universe
+#
+# Only Direct Plan - Growth variants, verified against the mfapi.in API.
+# Each entry maps a scheme_code (int) to its category and benchmark.
+#
+# Benchmarks are referenced by id defined below in `benchmarks:`.
+
+benchmarks:
+  - id: NIFTY_50
+    name: Nifty 50
+    yf_ticker: "^NSEI"
+  - id: NIFTY_MIDCAP_150
+    name: Nifty Midcap 150
+    yf_ticker: "NIFTYMIDCAP150.NS"
+  - id: NIFTY_SMALLCAP_250
+    name: Nifty Smallcap 250
+    yf_ticker: "NIFTYSMLCAP250.NS"
+  - id: CRISIL_SHORT_BOND
+    name: CRISIL Short Term Bond Fund Index (proxy)
+    yf_ticker: null  # no public yfinance proxy; debt comparisons stay informational
+
+# Scheme codes resolved against https://api.mfapi.in/mf/{code}.
+# category uses one of: large_cap, mid_cap, small_cap, flexi_cap, index, short_debt.
+funds:
+  # ----- Large Cap -----
+  - { scheme_code: 119598, category: large_cap, benchmark_id: NIFTY_50 }
+  - { scheme_code: 118825, category: large_cap, benchmark_id: NIFTY_50 }
+  - { scheme_code: 118632, category: large_cap, benchmark_id: NIFTY_50 }
+  - { scheme_code: 120586, category: large_cap, benchmark_id: NIFTY_50 }
+  - { scheme_code: 120465, category: large_cap, benchmark_id: NIFTY_50 }
+  - { scheme_code: 119018, category: large_cap, benchmark_id: NIFTY_50 }
+
+  # ----- Mid Cap -----
+  - { scheme_code: 120505, category: mid_cap,   benchmark_id: NIFTY_MIDCAP_150 }
+  - { scheme_code: 119071, category: mid_cap,   benchmark_id: NIFTY_MIDCAP_150 }
+  - { scheme_code: 140228, category: mid_cap,   benchmark_id: NIFTY_MIDCAP_150 }
+  - { scheme_code: 118989, category: mid_cap,   benchmark_id: NIFTY_MIDCAP_150 }
+  - { scheme_code: 119775, category: mid_cap,   benchmark_id: NIFTY_MIDCAP_150 }
+
+  # ----- Small Cap -----
+  - { scheme_code: 125497, category: small_cap, benchmark_id: NIFTY_SMALLCAP_250 }
+  - { scheme_code: 118778, category: small_cap, benchmark_id: NIFTY_SMALLCAP_250 }
+  - { scheme_code: 125354, category: small_cap, benchmark_id: NIFTY_SMALLCAP_250 }
+  - { scheme_code: 119212, category: small_cap, benchmark_id: NIFTY_SMALLCAP_250 }
+  - { scheme_code: 120164, category: small_cap, benchmark_id: NIFTY_SMALLCAP_250 }
+
+  # ----- Flexi Cap -----
+  - { scheme_code: 122639, category: flexi_cap, benchmark_id: NIFTY_50 }
+  - { scheme_code: 118955, category: flexi_cap, benchmark_id: NIFTY_50 }
+  - { scheme_code: 120166, category: flexi_cap, benchmark_id: NIFTY_50 }
+  - { scheme_code: 120662, category: flexi_cap, benchmark_id: NIFTY_50 }
+
+  # ----- Index -----
+  - { scheme_code: 120716, category: index,     benchmark_id: NIFTY_50 }
+  - { scheme_code: 118741, category: index,     benchmark_id: NIFTY_50 }
+  - { scheme_code: 119063, category: index,     benchmark_id: NIFTY_50 }
+  - { scheme_code: 147622, category: index,     benchmark_id: NIFTY_MIDCAP_150 }
+
+  # ----- Short Duration Debt -----
+  - { scheme_code: 120754, category: short_debt, benchmark_id: CRISIL_SHORT_BOND }
+  - { scheme_code: 120510, category: short_debt, benchmark_id: CRISIL_SHORT_BOND }
+  - { scheme_code: 119498, category: short_debt, benchmark_id: CRISIL_SHORT_BOND }
+  - { scheme_code: 119016, category: short_debt, benchmark_id: CRISIL_SHORT_BOND }
+  - { scheme_code: 119816, category: short_debt, benchmark_id: CRISIL_SHORT_BOND }
