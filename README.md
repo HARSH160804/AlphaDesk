@@ -150,7 +150,19 @@ Pick 2–6 funds, see them rebased to 100 on their common trading-date start, wi
 
 Pick a fund + window + format (PPTX or DOCX). The outline and the three generated takeaways render before you click Generate. The server streams a 400 KB file back as a download; same palette and typography as the web.
 
+<p align="center">
+  <img src="docs/screenshots/reports-light.jpg" width="80%" alt="Reports page, light" />
+</p>
+
 Sample output: a 10-slide deck with executive summary, performance-vs-benchmark line chart, trailing-returns table, calendar-year grouped bars, risk-metrics grid, drawdown with worst-episode annotation, rolling 3Y, in-category leaderboard, methodology + disclaimer.
+
+### Data Health
+
+Last ingestion run with row counts, warnings surfaced verbatim ("1 non-positive values dropped"), and a Refresh now button that triggers a background pipeline run.
+
+<p align="center">
+  <img src="docs/screenshots/data-health-light.jpg" width="80%" alt="Data Health page, light" />
+</p>
 
 ---
 

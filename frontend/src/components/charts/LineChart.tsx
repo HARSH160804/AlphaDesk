@@ -41,7 +41,21 @@ export function LineChart({
     [data],
   );
 
-  // Tick formatter: year on x-axis only — reduces clutter.
+  // Pick one tick per calendar year — the first observation of each year —
+  // so the x-axis never shows "2024 2024 2024…" from densely sampled series.
+  const yearTicks = useMemo(() => {
+    const seen = new Set<string>();
+    const picks: string[] = [];
+    for (const p of data) {
+      const y = p.date.slice(0, 4);
+      if (!seen.has(y)) {
+        seen.add(y);
+        picks.push(p.date);
+      }
+    }
+    return picks;
+  }, [data]);
+
   const xTick = (iso: string) => iso.slice(0, 4);
 
   return (
@@ -59,11 +73,11 @@ export function LineChart({
           <XAxis
             dataKey="date"
             tickFormatter={xTick}
+            ticks={yearTicks}
             tick={{ fontSize: 11, fill: "rgb(var(--fg-subtle))" }}
             axisLine={{ stroke: "rgb(var(--hairline))" }}
             tickLine={false}
-            minTickGap={48}
-            interval="preserveStartEnd"
+            interval={0}
           />
           <YAxis
             tickFormatter={(v) => yFormatter(Number(v))}
